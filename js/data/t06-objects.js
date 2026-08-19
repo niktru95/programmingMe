@@ -2,7 +2,15 @@
 TasksDB.push({
   id: 'objects', title: 'Объекты', icon: '📦',
   description: 'Создание, чтение, слияние, инверсия и работа с массивами объектов — база для реального кода.',
-  tasks: [
+  theory: [
+    { h: 'Объектный литерал', text: 'Объект хранит данные как пары ключ: значение. Ключи — обычно строки, значения — любые типы.', code: 'let user = {\n  name: "Иван",\n  age: 25,\n  isAdmin: false\n};\nuser.name    // "Иван"\nuser["age"]  // 25 — доступ через строку' },
+    { h: 'Изменение объекта', text: 'Свойства можно добавлять, менять и удалять даже после создания объекта.', code: 'let user = { name: "Иван" };\nuser.age = 25;        // добавили\nuser.name = "Пётр";   // изменили\ndelete user.age;      // удалили\n// user === { name: "Пётр" }' },
+    { h: 'Вложенные объекты и методы', text: 'Значением свойства может быть объект или функция (тогда это «метод» объекта).', code: 'let user = {\n  name: "Иван",\n  address: { city: "Москва" },\n  greet: function () { return "Привет, " + this.name; }\n};\nuser.address.city // "Москва"\nuser.greet()      // "Привет, Иван"' },
+    { h: 'Object.keys / values / entries', text: 'Три встроенных способа превратить объект в массив: ключи, значения или пары.', code: 'let o = { a: 1, b: 2 };\nObject.keys(o)    // ["a", "b"]\nObject.values(o)  // [1, 2]\nObject.entries(o) // [["a", 1], ["b", 2]]' },
+    { h: 'Копии и слияние', text: 'Объекты передаются по ссылке: присваивание НЕ копирует! Для копии используйте {...obj} или Object.assign.', code: 'let a = { x: 1 };\nlet b = a;        // НЕ копия — тот же объект!\nb.x = 99;         // a.x тоже стал 99\n\nlet c = { ...a }; // настоящая копия\nlet d = Object.assign({}, a);\n\nlet merged = { ...{ x: 1 }, ...{ y: 2 } };\n// { x: 1, y: 2 }' },
+    { h: 'Цикл for...in', text: 'Пройдёт по всем ключам объекта.', code: 'let o = { a: 1, b: 2 };\nfor (let key in o) {\n  console.log(key, o[key]);  // a 1, b 2\n}' },
+    { h: 'Массивы объектов', text: 'Самое популярное сочетание: массив пользователей/товаров + методы массивов.', code: 'let users = [\n  { name: "Аня", age: 30 },\n  { name: "Пётр", age: 20 }\n];\nusers.map(u => u.name);               // имена\nusers.filter(u => u.age > 25);        // взрослые\nusers.sort((a, b) => a.age - b.age);  // по возрасту\nusers.reduce((s, u) => s + u.age, 0); // сумма возрастов\nusers.find(u => u.name === "Пётр");   // один объект' }
+  ],  tasks: [
     { id: 'o-01', title: 'Создать пользователя', difficulty: 1,
       description: 'Напишите функцию makeUser(name, age), которая возвращает объект { name: name, age: age }.\n\nmakeUser(\"Иван\", 25) → { name: \"Иван\", age: 25 }',
       functionName: 'makeUser', starterCode: 'function makeUser(name, age) {\n  // ваш код\n}',

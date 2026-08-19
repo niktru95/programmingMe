@@ -55,6 +55,7 @@
   var SessionDB = TasksDB.map(function (topic) {
     return {
       id: topic.id, title: topic.title, icon: topic.icon, description: topic.description,
+      theory: topic.theory,
       tasks: topic.tasks.map(function (task) {
         return {
           id: task.id, title: task.title, difficulty: task.difficulty, description: task.description,
@@ -381,6 +382,25 @@
     wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
+  /* ---------- Теория ---------- */
+  function openTheory(topicId) {
+    var topic = getTopic(topicId);
+    if (!topic || !topic.theory || !topic.theory.length) return;
+    $('#theory-topic-title').textContent = topic.title;
+    $('#theory-topic-icon').textContent = topic.icon;
+    $('#theory-content').innerHTML = topic.theory.map(function (sec, i) {
+      return '<div class="theory-section"><h3 class="theory-h">' + (i + 1) + '. ' + esc(sec.h) + '</h3>' +
+        formatDescription(sec.text) +
+        (sec.code ? '<pre class="inline-code">' + esc(sec.code) + '</pre>' : '') +
+        '</div>';
+    }).join('');
+    $('#theory-backdrop').classList.remove('hidden');
+  }
+
+  function closeTheory() {
+    $('#theory-backdrop').classList.add('hidden');
+  }
+
   /* ---------- События ---------- */
   function bindEvents() {
     $('#btn-home').addEventListener('click', function () { location.hash = ''; });
@@ -426,6 +446,12 @@
       });
     });
 
+    $('#btn-theory').addEventListener('click', function () { openTheory(state.topicId); });
+    $('#btn-theory-task').addEventListener('click', function () { openTheory(state.topicId); });
+    $('#theory-close').addEventListener('click', closeTheory);
+    $('#theory-start').addEventListener('click', closeTheory);
+    $('#theory-backdrop').addEventListener('click', function (e) { if (e.target === $('#theory-backdrop')) closeTheory(); });
+
     $('#topic-filters').addEventListener('click', function (e) {
       var btn = e.target.closest('[data-filter]');
       if (btn) { state.filter = btn.getAttribute('data-filter'); renderTopic(); }
@@ -444,7 +470,7 @@
 
     document.addEventListener('keydown', function (e) {
       if (e.ctrlKey && e.key === 'Enter') runCurrent();
-      if (e.key === 'Escape') closeModal(false);
+      if (e.key === 'Escape') { closeModal(false); closeTheory(); }
     });
 
     window.addEventListener('hashchange', navigate);

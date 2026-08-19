@@ -2,7 +2,15 @@
 TasksDB.push({
   id: 'array-methods', title: 'Методы массивов', icon: '⚙️',
   description: 'Прокачиваем код с map, filter и reduce — мощный инструмент для работы с массивами.',
-  tasks: [
+  theory: [
+    { h: 'map — преобразовать каждый элемент', text: 'map создаёт новый массив, применяя функцию к каждому элементу. Длина не меняется — меняются значения.', code: 'let nums = [1, 2, 3];\nlet doubled = nums.map(x => x * 2);\n// [2, 4, 6]\n\nlet names = ["аня", "петя"];\nlet up = names.map(n => n.toUpperCase());\n// ["АНЯ", "ПЕТЯ"]' },
+    { h: 'filter — отобрать по условию', text: 'filter оставляет элементы, для которых функция вернула true. Массив может стать короче.', code: 'let nums = [1, 2, 3, 4, 5];\nlet evens = nums.filter(x => x % 2 === 0);\n// [2, 4]\n\nlet words = ["кот", "программирование"];\nlet long = words.filter(w => w.length >= 5);\n// ["программирование"]' },
+    { h: 'reduce — свести к одному значению', text: 'reduce проходит по массиву и накапливает результат. Первый параметр — функция (аккумулятор, текущий), второй — начальное значение.', code: 'let nums = [1, 2, 3, 4];\nlet sum = nums.reduce((acc, x) => acc + x, 0);\n// 10\n\nlet prod = nums.reduce((acc, x) => acc * x, 1);\n// 24' },
+    { h: 'Аргументы колбэка', text: 'Функция в map/filter/reduce получает не только элемент: (элемент, индекс, массив).', code: 'let arr = ["а", "б", "в"];\narr.map((x, i) => i + ": " + x);\n// ["0: а", "1: б", "2: в"]' },
+    { h: 'forEach, every, some', text: 'forEach просто обходит массив (ничего не возвращает). every — все ли подходят, some — есть ли хотя бы один подходящий.', code: '[1, 2, 3].forEach(x => console.log(x));\n\n[2, 4, 6].every(x => x % 2 === 0)  // true\n[1, 2, 3].every(x => x > 5)         // false\n[1, 2, 8].some(x => x > 5)          // true' },
+    { h: 'flat и вложенные массивы', text: 'flat() раскрывает вложенные массивы на один уровень, flat(Infinity) — на все уровни.', code: '[1, [2, [3]]].flat()        // [1, 2, [3]]\n[1, [2, [3]]].flat(Infinity) // [1, 2, 3]' },
+    { h: 'Цепочки методов', text: 'Методы вызываются подряд: результат одного передаётся следующему. Читается как конвейер: фильтр → преобразование → сумма.', code: 'let nums = [1, 5, -2, 8, 3];\nlet total = nums\n  .filter(x => x > 0)   // [1, 5, 8, 3]\n  .map(x => x * 10)     // [10, 50, 80, 30]\n  .reduce((a, b) => a + b, 0);\n// 170' }
+  ],  tasks: [
     { id: 'm-01', title: 'Удвоить через map', difficulty: 1,
       description: 'Напишите функцию doubleMap(arr), которая возвращает новый массив, где каждый элемент умножен на 2. Решите с помощью map.\n\ndoubleMap([1, 2, 3]) → [2, 4, 6]',
       functionName: 'doubleMap', starterCode: 'function doubleMap(arr) {\n  // ваш код\n}',

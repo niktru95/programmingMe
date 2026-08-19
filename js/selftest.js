@@ -29,13 +29,13 @@
     check('deepEqual-array-nested', Runner.deepEqual([1, [2, 3]], [1, [2, 3]]));
     check('deepEqual-object', Runner.deepEqual({ a: 1, b: { c: 2 } }, { a: 1, b: { c: 2 } }));
     check('deepEqual-negative', !Runner.deepEqual([1, 2], [1, 3]));
-    check('data-8-topics', TasksDB.length === 8);
+    check('data-9-topics', TasksDB.length === 9);
     var totalTasks = 0, badDiff = 0;
     TasksDB.forEach(function (topic) {
       totalTasks += topic.tasks.length;
       topic.tasks.forEach(function (t) { if (!t.difficulty || t.difficulty < 1 || t.difficulty > 3) badDiff++; });
     });
-    check('data-240-tasks', totalTasks === 240);
+    check('data-270-tasks', totalTasks === 270);
     check('data-difficulties-ok', badDiff === 0);
 
     var syncTask = {

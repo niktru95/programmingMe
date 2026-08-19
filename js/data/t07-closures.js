@@ -2,7 +2,15 @@
 TasksDB.push({
   id: 'closures', title: 'Функции и замыкания', icon: '🧠',
   description: 'Счётчики, замыкания, каррирование, композиция, кэширование. Задачи «со звёздочкой» для гибкого мышления.',
-  tasks: [
+  theory: [
+    { h: 'Объявление функций', text: 'Три основных способа. Function declaration всплывает (можно вызвать до объявления), стрелочная функция — самая короткая.', code: 'function add(a, b) { return a + b; }        // объявление\nconst sub = function (a, b) { return a - b; }; // выражение\nconst mul = (a, b) => a * b;                  // стрелочная\n\nadd(1, 2) // 3' },
+    { h: 'Параметры и return', text: 'Функция принимает параметры и возвращает результат через return. Без return функция вернёт undefined.', code: 'function greet(name) {\n  return "Привет, " + name;\n}\ngreet("Иван"); // "Привет, Иван"' },
+    { h: 'Функции — значения', text: 'Функцию можно записать в переменную, передать другой функции и вернуть из функции. Это основа «функций высшего порядка».', code: 'function twice(fn, x) {\n  return fn(fn(x));   // применить два раза\n}\ntwice(x => x * 2, 3); // 12' },
+    { h: 'Что такое замыкание', text: 'Внутренняя функция «запоминает» переменные внешней функции даже после её завершения. Это и есть замыкание.', code: 'function makeCounter() {\n  let n = 0;             // живёт в замыкании\n  return function () {\n    return n++;          // увеличиваем и возвращаем\n  };\n}\nconst c = makeCounter();\nc(); // 0\nc(); // 1\nc(); // 2' },
+    { h: 'Зачем нужны замыкания', text: '1) Приватные данные, которые нельзя изменить снаружи.\n2) Хранение состояния между вызовами.\n3) Фабрики функций «под заказ».', code: 'function makeBank() {\n  let balance = 0;      // снаружи не видно!\n  return {\n    deposit(amount) { balance += amount; },\n    getBalance() { return balance; }\n  };\n}' },
+    { h: 'Кэширование (мемоизация)', text: 'Замыкание позволяет хранить результаты вычислений — кэш. Повторный вызов с тем же аргументом берёт готовое значение.', code: 'function makeSqrtCache() {\n  const cache = {};\n  return function (x) {\n    if (x in cache) return cache[x];  // из кэша\n    const v = Math.sqrt(x);\n    cache[x] = v;\n    return v;\n  };\n}' },
+    { h: 'Композиция и каррирование', text: 'Композиция — вызов функций друг внутри друга: f(g(x)). Каррирование — превращение функции двух аргументов в цепочку из двух функций по одному аргументу.', code: 'const compose = (f, g) => (x) => f(g(x));\nconst add1 = (x) => x + 1;\nconst dbl = (x) => x * 2;\n\ncompose(dbl, add1)(5)   // (5 + 1) * 2 = 12\n\nconst curry2 = (fn) => (a) => (b) => fn(a, b);\ncurry2((a, b) => a + b)(3)(4) // 7' }
+  ],  tasks: [
     { id: 'f-01', title: 'Счётчик', difficulty: 2,
       description: 'Напишите функцию makeCounter(), которая возвращает функцию-счётчик. Каждый вызов счётчика возвращает следующее число, начиная с 0.\n\nvar c = makeCounter();\nc() → 0\nc() → 1\nc() → 2',
       functionName: 'makeCounter', starterCode: 'function makeCounter() {\n  // ваш код\n}',

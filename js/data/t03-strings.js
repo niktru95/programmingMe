@@ -2,7 +2,14 @@
 TasksDB.push({
   id: 'strings', title: 'Строки', icon: '🔤',
   description: 'Реверс, палиндромы, подстроки, регистр, camelCase и snake_case — работаем со строками как профи.',
-  tasks: [
+  theory: [
+    { h: 'Длина и символы', text: 'Строка — неизменяемая последовательность символов. Доступ к символу — по индексу (с нуля), длина — через свойство length.', code: 'let s = "кот";\ns[0]      // "к"\ns[2]      // "т"\ns.length // 3\ns[s.length - 1] // "т" — последний символ' },
+    { h: 'Регистр и поиск', text: 'toUpperCase() / toLowerCase() меняют регистр, indexOf() находит позицию подстроки (или -1), includes() отвечает «да/нет».', code: '"привет".toUpperCase()   // "ПРИВЕТ"\n"hello".indexOf("ell")    // 1\n"hello".indexOf("xyz")    // -1\n"hello".includes("ell")  // true' },
+    { h: 'Вырезание', text: 'slice(start, end) вырезает от start до end (не включая end). Отрицательные индексы отсчитываются с конца.', code: '"программирование".slice(0, 6)  // "програ"\n"hello".slice(-2)                // "lo"\n"кот".slice(-1)                  // "т"' },
+    { h: 'split и join', text: 'split(разделитель) разбивает строку на массив, join(разделитель) собирает массив обратно в строку.', code: '"а-б-в".split("-")   // ["а", "б", "в"]\n["а", "б"].join("-")  // "а-б"\n"abc".split("")       // ["a", "b", "c"] — по символам' },
+    { h: 'Реверс и палиндромы', text: 'Чтобы перевернуть строку, разбейте её на символы, разверните массив и склейте. Сравнив строку с её переворотом, проверяют палиндром.', code: 'let s = "кот";\nlet rev = s.split("").reverse().join(""); // "ток"\n\nlet pal = "шалаш";\npal === pal.split("").reverse().join("") // true' },
+    { h: 'replace и trim', text: 'replace(что, на_что) заменяет первое вхождение, с флагом /g — все. trim() убирает пробелы по краям.', code: '"а-б-а".replace("-", "+")    // "а+б-а" — только первое\n"а-б-а".replace(/-/g, "+")   // "а+б+а" — все\n"  хай  ".trim()            // "хай"' }
+  ],  tasks: [
     { id: 's-01', title: 'Длина строки', difficulty: 1,
       description: 'Напишите функцию strLen(s), возвращающую длину строки.\n\nstrLen(\"кот\") → 3',
       functionName: 'strLen', starterCode: 'function strLen(s) {\n  // ваш код\n}',

@@ -28,6 +28,7 @@
         <p id="topic-description" class="page-subtitle"></p>
         <div id="topic-progress" class="topic-progress"></div>
         <div class="topic-actions">
+          <button class="btn" id="btn-theory">📖 Теория</button>
           <button class="btn" id="btn-shuffle">🎲 Перемешать</button>
         </div>
       </div>
@@ -38,6 +39,7 @@
     <section id="view-task" class="view hidden">
       <div class="task-nav">
         <button class="btn ghost" id="btn-back-topic">← К списку задач</button>
+        <button class="btn ghost" id="btn-theory-task">📖 Теория</button>
         <button class="btn ghost" id="btn-shuffle-task">🎲 Другая задача</button>
         <button class="btn ghost" id="btn-next-task">Следующая задача →</button>
       </div>
@@ -91,6 +93,20 @@
     </div>
   </div>
 
+  <div class="modal-backdrop hidden" id="theory-backdrop">
+    <div class="modal modal-wide">
+      <div class="theory-head">
+        <span id="theory-topic-icon" class="theory-icon"></span>
+        <h2 id="theory-topic-title" class="theory-title"></h2>
+        <button class="btn ghost sm" id="theory-close">✕ Закрыть</button>
+      </div>
+      <div class="theory-content" id="theory-content"></div>
+      <div class="theory-footer">
+        <button class="btn primary" id="theory-start">Перейти к задачам →</button>
+      </div>
+    </div>
+  </div>
+
   <footer class="app-footer">Сделано для себя · Изучайте JavaScript весело 🚀</footer>
 
   <script src="js/data/core.js"></script>
@@ -102,6 +118,7 @@
   <script src="js/data/t06-objects.js"></script>
   <script src="js/data/t07-closures.js"></script>
   <script src="js/data/t08-async.js"></script>
+  <script src="js/data/t09-string-methods.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/runner.js"></script>
   <script src="js/app.js"></script>

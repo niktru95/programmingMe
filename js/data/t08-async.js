@@ -2,7 +2,16 @@
 TasksDB.push({
   id: 'async', title: 'Асинхронность', icon: '⏱️',
   description: 'Promise, async/await, цепочки, race и all — уверенная работа с асинхронным кодом. Финальная тема.',
-  tasks: [
+  theory: [
+    { h: 'Асинхронность в JS', text: 'Часть операций занимает время: запрос к серверу, таймер, чтение файла. JavaScript не блокирует страницу в ожидании — он продолжает работать и «забирает результат» позже.', code: 'console.log("start");\nsetTimeout(() => console.log("позже"), 100);\nconsole.log("end");\n// start → end → позже' },
+    { h: 'Проблема колбэков', text: 'Старый способ — передавать функцию, которая вызовется после завершения операции. Вложенные вызовы превращаются в «ад колбэков».', code: 'getUser(id, (user) => {\n  getPosts(user, (posts) => {\n    getComments(posts[0], (comments) => {\n      // ...слишком глубоко\n    });\n  });\n});' },
+    { h: 'Promise', text: 'Promise — объект, представляющий будущий результат. Бывает fulfilled (выполнен), rejected (отклонён) или pending (в ожидании).', code: 'const promise = new Promise((resolve, reject) => {\n  const ok = Math.random() > 0.5;\n  setTimeout(() => ok\n    ? resolve("успех")\n    : reject(new Error("провал")), 100);\n});' },
+    { h: 'then / catch', text: '.then(обработчик) — что делать при успехе, .catch(обработчик) — при ошибке. Цепочки позволяют последовательно обрабатывать промисы.', code: 'fetch("/api/user")\n  .then(res => res.json())\n  .then(user => console.log(user.name))\n  .catch(err => console.error("Ошибка:", err));' },
+    { h: 'Promise.all / race / any', text: 'all — дождаться всех (упадёт, если упадёт любой), race — первый завершившийся, any — первый успешный.', code: 'const p1 = Promise.resolve(1);\nconst p2 = Promise.resolve(2);\n\nawait Promise.all([p1, p2]);   // [1, 2]\nawait Promise.race([p1, p2]);  // 1\nawait Promise.any([p1, p2]);   // 1' },
+    { h: 'async / await', text: 'async-функция всегда возвращает Promise. await «приостанавливает» функцию, пока промис не завершится, — код читается как синхронный.', code: 'async function fetchUser(id) {\n  try {\n    const res = await fetch(`/api/user/${id}`);\n    return await res.json();\n  } catch (err) {\n    console.error("Ошибка:", err);\n  }\n}' },
+    { h: 'Ошибки в async', text: 'В async-функциях ошибки ловятся обычным try/catch. Если не поймать — промис упадёт с необработанной ошибкой.', code: 'async function risky() {\n  throw new Error("boom");\n}\n\nrisky()\n  .then(() => console.log("ok"))\n  .catch(err => console.log(err.message)); // boom' },
+    { h: 'Утилита wait', text: 'Маленькая функция wait(ms) — самый простой промис с таймером. Многие задачи этой темы построены на ней.', code: 'function wait(ms) {\n  return new Promise((resolve) => setTimeout(resolve, ms));\n}\n\nasync function main() {\n  console.log("ждём...");\n  await wait(1000);\n  console.log("прошла секунда");\n}' }
+  ],  tasks: [
     { id: 'as-01', title: 'Подождать', difficulty: 2,
       description: 'Напишите функцию wait(ms), которая возвращает Promise, резолвящийся (разрешающийся) через ms миллисекунд.\n\nwait(1000).then(() => console.log(\"прошла секунда\"))',
       functionName: 'wait', starterCode: 'function wait(ms) {\n  // ваш код\n}',
