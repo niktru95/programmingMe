@@ -2,6 +2,9 @@
 TasksDB.push({
   id: 'array-methods', title: 'Методы массивов', icon: '⚙️',
   description: 'Прокачиваем код с map, filter и reduce — мощный инструмент для работы с массивами.',
+  chapters: [
+    { title: 'Методы массивов', url: 'https://learn.javascript.ru/array-methods' }
+  ],
   theory: [
     { h: 'map — преобразовать каждый элемент', text: 'map создаёт новый массив, применяя функцию к каждому элементу. Длина не меняется — меняются значения.', code: 'let nums = [1, 2, 3];\nlet doubled = nums.map(x => x * 2);\n// [2, 4, 6]\n\nlet names = ["аня", "петя"];\nlet up = names.map(n => n.toUpperCase());\n// ["АНЯ", "ПЕТЯ"]' },
     { h: 'filter — отобрать по условию', text: 'filter оставляет элементы, для которых функция вернула true. Массив может стать короче.', code: 'let nums = [1, 2, 3, 4, 5];\nlet evens = nums.filter(x => x % 2 === 0);\n// [2, 4]\n\nlet words = ["кот", "программирование"];\nlet long = words.filter(w => w.length >= 5);\n// ["программирование"]' },

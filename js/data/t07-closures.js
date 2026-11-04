@@ -2,6 +2,12 @@
 TasksDB.push({
   id: 'closures', title: 'Функции и замыкания', icon: '🧠',
   description: 'Счётчики, замыкания, каррирование, композиция, кэширование. Задачи «со звёздочкой» для гибкого мышления.',
+  chapters: [
+    { title: 'Функции', url: 'https://learn.javascript.ru/function-basics' },
+    { title: 'Стрелочные функции, основы', url: 'https://learn.javascript.ru/arrow-functions-basics' },
+    { title: 'Область видимости переменных, замыкание', url: 'https://learn.javascript.ru/closure' },
+    { title: 'Каррирование', url: 'https://learn.javascript.ru/currying-partials' }
+  ],
   theory: [
     { h: 'Объявление функций', text: 'Три основных способа. Function declaration всплывает (можно вызвать до объявления), стрелочная функция — самая короткая.', code: 'function add(a, b) { return a + b; }        // объявление\nconst sub = function (a, b) { return a - b; }; // выражение\nconst mul = (a, b) => a * b;                  // стрелочная\n\nadd(1, 2) // 3' },
     { h: 'Параметры и return', text: 'Функция принимает параметры и возвращает результат через return. Без return функция вернёт undefined.', code: 'function greet(name) {\n  return "Привет, " + name;\n}\ngreet("Иван"); // "Привет, Иван"' },

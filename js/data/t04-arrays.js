@@ -2,6 +2,9 @@
 TasksDB.push({
   id: 'arrays', title: 'Массивы', icon: '📚',
   description: 'Суммы, максимумы, сдвиги, дубликаты, разбиение на куски. Многие задачи генерируют свежие данные при каждой загрузке.',
+  chapters: [
+    { title: 'Массивы', url: 'https://learn.javascript.ru/array' }
+  ],
   theory: [
     { h: 'Основы', text: 'Массив — упорядоченный список значений. Элементы нумеруются с нуля, длина — свойство length.', code: 'let arr = [10, 20, 30];\narr[0]   // 10\narr[2]   // 30\narr.length // 3\narr[arr.length - 1] // 30 — последний элемент' },
     { h: 'Добавление и удаление', text: 'push() — в конец, pop() — удалить с конца, unshift() — в начало, shift() — удалить с начала.', code: 'let arr = [1, 2];\narr.push(3);     // [1, 2, 3]\narr.pop();       // [1, 2]\narr.unshift(0);  // [0, 1, 2]\narr.shift();     // [1, 2]' },

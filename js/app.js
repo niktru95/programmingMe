@@ -23,6 +23,10 @@
     if (v === -Infinity) return '-Infinity';
     if (typeof v === 'string') return '"' + v + '"';
     if (typeof v === 'function') return 'ƒ()';
+    if (v instanceof Map) return 'Map(' + fmt(Array.from(v)) + ')';
+    if (v instanceof Set) return 'Set(' + fmt(Array.from(v)) + ')';
+    if (v instanceof Error) return v.name + ': ' + v.message;
+    if (v instanceof Date) return isNaN(v) ? 'Invalid Date' : 'Date(' + v.toISOString() + ')';
     if (typeof v === 'boolean' || v === null) return String(v);
     try { return JSON.stringify(v); } catch (e) { return String(v); }
   }
@@ -53,7 +57,7 @@
   var SessionDB = TasksDB.map(function (topic) {
     return {
       id: topic.id, title: topic.title, icon: topic.icon, description: topic.description,
-      theory: topic.theory,
+      theory: topic.theory, chapters: topic.chapters,
       tasks: topic.tasks.map(function (task) {
         return {
           id: task.id, title: task.title, difficulty: task.difficulty, description: task.description,
@@ -390,7 +394,12 @@
         formatDescription(sec.text) +
         (sec.code ? '<pre class="inline-code">' + esc(sec.code) + '</pre>' : '') +
         '</div>';
-    }).join('');
+    }).join('') + (topic.chapters && topic.chapters.length
+      ? '<div class="theory-section"><h3 class="theory-h">📚 Читать в учебнике learn.javascript.ru</h3>' +
+        topic.chapters.map(function (c) {
+          return '<p class="desc-li">• <a href="' + esc(c.url) + '" target="_blank" rel="noopener">' + esc(c.title) + '</a></p>';
+        }).join('') + '</div>'
+      : '');
     $('#theory-backdrop').classList.remove('hidden');
   }
 

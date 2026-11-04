@@ -2,6 +2,9 @@
 TasksDB.push({
   id: 'string-methods', title: 'Методы строк', icon: '🔡',
   description: 'Тренируем методы строк: регистр, поиск, вырезание slice, разбиение и сборка, padding, replace.',
+  chapters: [
+    { title: 'Строки', url: 'https://learn.javascript.ru/string' }
+  ],
   theory: [
     { h: 'Регистр', text: 'toUpperCase() переводит все буквы в верхний регистр, toLowerCase() — в нижний. Возвращается новая строка, исходная не меняется.', code: 'let s = "кот";\ns.toUpperCase() // "КОТ"\ns.toLowerCase() // "кот"' },
     { h: 'Проверка подстрок', text: 'includes(sub) — есть ли подстрока, startsWith(pre) — начинается ли строка с префикса, endsWith(suf) — заканчивается ли суффиксом.', code: '"котик".includes("от")        // true\n"Привет".startsWith("При")  // true\n"мир".endsWith("ир")        // true' },

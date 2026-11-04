@@ -1,7 +1,13 @@
 /* Тема 8: Асинхронность — Promise и async/await */
 TasksDB.push({
   id: 'async', title: 'Асинхронность', icon: '⏱️',
-  description: 'Promise, async/await, цепочки, race и all — уверенная работа с асинхронным кодом. Финальная тема.',
+  description: 'Promise, async/await, цепочки, race и all — уверенная работа с асинхронным кодом.',
+  chapters: [
+    { title: 'Промисы', url: 'https://learn.javascript.ru/promise-basics' },
+    { title: 'Цепочка промисов', url: 'https://learn.javascript.ru/promise-chaining' },
+    { title: 'Promise API', url: 'https://learn.javascript.ru/promise-api' },
+    { title: 'Async/await', url: 'https://learn.javascript.ru/async-await' }
+  ],
   theory: [
     { h: 'Асинхронность в JS', text: 'Часть операций занимает время: запрос к серверу, таймер, чтение файла. JavaScript не блокирует страницу в ожидании — он продолжает работать и «забирает результат» позже.', code: 'console.log("start");\nsetTimeout(() => console.log("позже"), 100);\nconsole.log("end");\n// start → end → позже' },
     { h: 'Проблема колбэков', text: 'Старый способ — передавать функцию, которая вызовется после завершения операции. Вложенные вызовы превращаются в «ад колбэков».', code: 'getUser(id, (user) => {\n  getPosts(user, (posts) => {\n    getComments(posts[0], (comments) => {\n      // ...слишком глубоко\n    });\n  });\n});' },
