@@ -10,7 +10,8 @@ TasksDB.push({
     { h: 'forEach, every, some', text: 'forEach просто обходит массив (ничего не возвращает). every — все ли подходят, some — есть ли хотя бы один подходящий.', code: '[1, 2, 3].forEach(x => console.log(x));\n\n[2, 4, 6].every(x => x % 2 === 0)  // true\n[1, 2, 3].every(x => x > 5)         // false\n[1, 2, 8].some(x => x > 5)          // true' },
     { h: 'flat и вложенные массивы', text: 'flat() раскрывает вложенные массивы на один уровень, flat(Infinity) — на все уровни.', code: '[1, [2, [3]]].flat()        // [1, 2, [3]]\n[1, [2, [3]]].flat(Infinity) // [1, 2, 3]' },
     { h: 'Цепочки методов', text: 'Методы вызываются подряд: результат одного передаётся следующему. Читается как конвейер: фильтр → преобразование → сумма.', code: 'let nums = [1, 5, -2, 8, 3];\nlet total = nums\n  .filter(x => x > 0)   // [1, 5, 8, 3]\n  .map(x => x * 10)     // [10, 50, 80, 30]\n  .reduce((a, b) => a + b, 0);\n// 170' }
-  ],  tasks: [
+  ],
+  tasks: [
     { id: 'm-01', title: 'Удвоить через map', difficulty: 1,
       description: 'Напишите функцию doubleMap(arr), которая возвращает новый массив, где каждый элемент умножен на 2. Решите с помощью map.\n\ndoubleMap([1, 2, 3]) → [2, 4, 6]',
       functionName: 'doubleMap', starterCode: 'function doubleMap(arr) {\n  // ваш код\n}',
@@ -24,10 +25,10 @@ TasksDB.push({
       gen: function () { var arr = rndArr(rndInt(2, 5), -4, 4); return [ { input: [arr], expected: arr.map(function (x) { return x * x; }) }, { input: [[1, 2, 3]], expected: [1, 4, 9] } ]; },
       solution: 'function squares(arr) {\n  return arr.map(function (x) { return x * x; });\n}' },
     { id: 'm-03', title: 'Длины строк', difficulty: 1,
-      description: 'Напишите функцию lengths(arr), которая возвращает массив длин строк. Решите с помощью map.\n\nlengths([\"кот\", \"программирование\"]) → [3, 15]',
+      description: 'Напишите функцию lengths(arr), которая возвращает массив длин строк. Решите с помощью map.\n\nlengths([\"кот\", \"программирование\"]) → [3, 16]',
       functionName: 'lengths', starterCode: 'function lengths(arr) {\n  // ваш код\n}',
       hints: ['arr.map(function(s) { return s.length; })'],
-      tests: [ { input: [['кот', 'программирование']], expected: [3, 15] }, { input: [['', 'a']], expected: [0, 1] }, { input: [[]], expected: [] } ],
+      tests: [ { input: [['кот', 'программирование']], expected: [3, 16] }, { input: [['', 'a']], expected: [0, 1] }, { input: [[]], expected: [] } ],
       solution: 'function lengths(arr) {\n  return arr.map(function (s) { return s.length; });\n}' },
     { id: 'm-04', title: 'Верхний регистр', difficulty: 1,
       description: 'Напишите функцию upperAll(arr), которая возвращает массив строк в верхнем регистре. Решите с помощью map.\n\nupperAll([\"кот\", \"пёс\"]) → [\"КОТ\", \"ПЁС\"]',
@@ -100,7 +101,8 @@ TasksDB.push({
       functionName: 'countEvens', starterCode: 'function countEvens(arr) {\n  // ваш код\n}',
       hints: ['arr.filter(...).length — фильтр и длина'],
       gen: function () { var arr = rndArr(rndInt(3, 6), 1, 10); return [ { input: [arr], expected: arr.filter(function (x) { return x % 2 === 0; }).length }, { input: [[1, 3]], expected: 0 } ]; },
-      solution: 'function countEvens(arr) {\n  return arr.filter(function (x) { return x % 2 === 0; }).length;\n}' },    { id: 'm-16', title: 'Уникальные через filter', difficulty: 2,
+      solution: 'function countEvens(arr) {\n  return arr.filter(function (x) { return x % 2 === 0; }).length;\n}' },
+    { id: 'm-16', title: 'Уникальные через filter', difficulty: 2,
       description: 'Напишите функцию uniqueArr(arr), которая возвращает уникальные элементы через filter (по индексу первого вхождения).\n\nuniqueArr([1, 2, 2, 3]) → [1, 2, 3]',
       functionName: 'uniqueArr', starterCode: 'function uniqueArr(arr) {\n  // ваш код\n}',
       hints: ['arr.indexOf(x) === i — первое вхождение x', 'filter(function(x, i) { return arr.indexOf(x) === i; })'],

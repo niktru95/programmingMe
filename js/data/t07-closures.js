@@ -10,7 +10,8 @@ TasksDB.push({
     { h: 'Зачем нужны замыкания', text: '1) Приватные данные, которые нельзя изменить снаружи.\n2) Хранение состояния между вызовами.\n3) Фабрики функций «под заказ».', code: 'function makeBank() {\n  let balance = 0;      // снаружи не видно!\n  return {\n    deposit(amount) { balance += amount; },\n    getBalance() { return balance; }\n  };\n}' },
     { h: 'Кэширование (мемоизация)', text: 'Замыкание позволяет хранить результаты вычислений — кэш. Повторный вызов с тем же аргументом берёт готовое значение.', code: 'function makeSqrtCache() {\n  const cache = {};\n  return function (x) {\n    if (x in cache) return cache[x];  // из кэша\n    const v = Math.sqrt(x);\n    cache[x] = v;\n    return v;\n  };\n}' },
     { h: 'Композиция и каррирование', text: 'Композиция — вызов функций друг внутри друга: f(g(x)). Каррирование — превращение функции двух аргументов в цепочку из двух функций по одному аргументу.', code: 'const compose = (f, g) => (x) => f(g(x));\nconst add1 = (x) => x + 1;\nconst dbl = (x) => x * 2;\n\ncompose(dbl, add1)(5)   // (5 + 1) * 2 = 12\n\nconst curry2 = (fn) => (a) => (b) => fn(a, b);\ncurry2((a, b) => a + b)(3)(4) // 7' }
-  ],  tasks: [
+  ],
+  tasks: [
     { id: 'f-01', title: 'Счётчик', difficulty: 2,
       description: 'Напишите функцию makeCounter(), которая возвращает функцию-счётчик. Каждый вызов счётчика возвращает следующее число, начиная с 0.\n\nvar c = makeCounter();\nc() → 0\nc() → 1\nc() → 2',
       functionName: 'makeCounter', starterCode: 'function makeCounter() {\n  // ваш код\n}',
@@ -100,7 +101,8 @@ TasksDB.push({
       functionName: 'flip', starterCode: 'function flip(fn) {\n  // ваш код\n}',
       hints: ['Верните function (a, b) { return fn(b, a); }'],
       run: '(fn) => { var div = function (a, b) { return a / b; }; return fn(div)(2, 10); }', expected: 5,
-      solution: 'function flip(fn) {\n  return function (a, b) { return fn(b, a); };\n}' },    { id: 'f-16', title: 'Применить ко всем', difficulty: 2,
+      solution: 'function flip(fn) {\n  return function (a, b) { return fn(b, a); };\n}' },
+    { id: 'f-16', title: 'Применить ко всем', difficulty: 2,
       description: 'Напишите функцию applyEach(fns, x), которая возвращает массив результатов вызова каждой функции из fns с аргументом x.\n\napplyEach([x => x * 2, x => x + 1], 5) → [10, 6]',
       functionName: 'applyEach', starterCode: 'function applyEach(fns, x) {\n  // ваш код\n}',
       hints: ['fns.map(function (fn) { return fn(x); })'],

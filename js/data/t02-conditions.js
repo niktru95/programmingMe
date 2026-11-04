@@ -10,7 +10,8 @@ TasksDB.push({
     { h: 'Цикл for', text: 'Повторяет код заданное число раз: старт; условие; шаг.', code: 'for (let i = 0; i < 5; i++) {\n  console.log(i);   // 0, 1, 2, 3, 4\n}' },
     { h: 'Цикл while', text: 'Повторяет код, пока условие истинно. Удобен, когда число повторений заранее неизвестно.', code: 'let n = 123;\nwhile (n > 0) {\n  console.log(n % 10);     // последняя цифра\n  n = Math.floor(n / 10);  // отбрасываем её\n}' },
     { h: 'Счётчики и накопление', text: 'Классический приём в задачах: идём по числам и накапливаем сумму или считаем совпадения.', code: 'let sum = 0, count = 0;\nfor (let i = 1; i <= 10; i++) {\n  sum += i;               // накапливаем сумму\n  if (i % 2 === 0) count++;   // считаем чётные\n}' }
-  ],  tasks: [
+  ],
+  tasks: [
     { id: 'c-01', title: 'Большее из двух', difficulty: 1,
       description: 'Напишите функцию max2(a, b), которая возвращает большее из двух чисел.\n\nmax2(3, 7) → 7',
       functionName: 'max2', starterCode: 'function max2(a, b) {\n  // ваш код\n}',
@@ -100,7 +101,8 @@ TasksDB.push({
       functionName: 'power', starterCode: 'function power(base, exp) {\n  // ваш код\n}',
       hints: ['Начните с result = 1', 'Умножайте result на base exp раз'],
       tests: [ { input: [2, 3], expected: 8 }, { input: [3, 2], expected: 9 }, { input: [5, 0], expected: 1 }, { input: [2, 1], expected: 2 } ],
-      solution: 'function power(base, exp) {\n  var result = 1;\n  for (var i = 0; i < exp; i++) result *= base;\n  return result;\n}' },    { id: 'c-16', title: 'FizzBuzz', difficulty: 3,
+      solution: 'function power(base, exp) {\n  var result = 1;\n  for (var i = 0; i < exp; i++) result *= base;\n  return result;\n}' },
+    { id: 'c-16', title: 'FizzBuzz', difficulty: 3,
       description: 'Напишите функцию fizzBuzz(n), которая возвращает массив от 1 до n, где:\n- числа, кратные 3, заменены на \"Fizz\"\n- числа, кратные 5 — на \"Buzz\"\n- кратные и 3, и 5 — на \"FizzBuzz\"\n\nfizzBuzz(5) → [1, 2, \"Fizz\", 4, \"Buzz\"]',
       functionName: 'fizzBuzz', starterCode: 'function fizzBuzz(n) {\n  // ваш код\n}',
       hints: ['Сначала проверяйте кратность и 3 и 5 (n % 15 === 0)', 'Потом по отдельности'],

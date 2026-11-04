@@ -27,10 +27,8 @@
     try { return JSON.stringify(v); } catch (e) { return String(v); }
   }
 
-  function fmtArgs(input) {
-    if (!input) return '';
-    if (Array.isArray(input)) return input.map(fmt).join(', ');
-    return fmt(input);
+  function fmtArgs(args) {
+    return (args || []).map(fmt).join(', ');
   }
 
   var DIFF = {
@@ -66,6 +64,8 @@
       })
     };
   });
+
+  window.SessionDB = SessionDB; // для selftest
 
   var getTopic = function (id) { return SessionDB.filter(function (t) { return t.id === id; })[0]; };
   var getTask = function (topicId, taskId) {
@@ -246,7 +246,7 @@
     var shown = state.hintsShown[task.id] || 0;
     if (shown < task.hints.length) {
       state.hintsShown[task.id] = shown + 1;
-      Storage.setHinted(task.id, true);
+      if (!Storage.isSolved(task.id)) Storage.setHinted(task.id, true);
       renderHints(task);
       renderTaskStatus(task);
     }
@@ -263,9 +263,10 @@
 
   function runCurrent() {
     var task = currentTask();
+    var btn = $('#btn-run');
+    if (!task || btn.disabled || $('#view-task').classList.contains('hidden')) return;
     var code = $('#code-editor').value;
     Storage.setDraft(task.id, code);
-    var btn = $('#btn-run');
     btn.disabled = true;
     btn.textContent = '⏳ Проверка...';
     Runner.run(task, code, function (res) {
@@ -299,19 +300,15 @@
 
     $('#results-list').innerHTML = res.results.map(function (r, i) {
       var inStr;
-      if (typeof r.input === 'string' && r.input.indexOf('(fn)') === 0) {
-        inStr = 'проверка-функция';
-      } else if (Array.isArray(r.input)) {
-        inStr = r.input.map(fmtArgs).join(' → ');
-      } else {
-        inStr = fmtArgs(r.input);
-      }
+      if (r.type === 'run') inStr = ' (проверка-функция)';
+      else if (r.type === 'steps') inStr = ' ' + r.input.map(function (args) { return '(' + fmtArgs(args) + ')'; }).join('');
+      else inStr = ' (' + fmtArgs(r.input) + ')';
       return '<div class="result ' + (r.pass ? 'pass' : 'fail') + '">' +
         '<div class="result-head">' + (r.pass ? '✅' : '❌') + ' Тест ' + (i + 1) +
-        '<span class="result-input"> (' + esc(inStr) + ')</span></div>' +
+        '<span class="result-input">' + esc(inStr) + '</span></div>' +
         (r.error
           ? '<div class="result-msg">Ошибка: ' + esc(r.error) + '</div>'
-          : '<div class="result-line">Получено: <code>' + esc(fmt(r.actual)) + '</code></div>' +
+          : '<div class="result-line">Получено: <code>' + esc(r.actualText !== undefined ? r.actualText : fmt(r.actual)) + '</code></div>' +
             '<div class="result-line">Ожидалось: <code>' + esc(fmt(r.expected)) + '</code></div>') +
         '</div>';
     }).join('');
@@ -376,7 +373,7 @@
       '<pre class="solution-code">' + esc(task.solution) + '</pre>' +
       (task.solutionNote ? '<p class="solution-note">' + esc(task.solutionNote) + '</p>' : '');
     document.querySelector('.task-card').appendChild(wrap);
-    Storage.setHinted(task.id, true);
+    if (!Storage.isSolved(task.id)) Storage.setHinted(task.id, true);
     renderTaskStatus(task);
     renderGlobalProgress();
     wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -441,7 +438,8 @@
     $('#btn-hint').addEventListener('click', function () { showNextHint(currentTask()); });
 
     $('#btn-solution').addEventListener('click', function () {
-      openModal('Показать решение?', 'Задача будет отмечена как «решена с подсказкой» ✨', function () {
+      var note = Storage.isSolved(currentTask().id) ? 'Задача уже решена — статус не изменится.' : 'Задача будет отмечена как «решена с подсказкой» ✨';
+      openModal('Показать решение?', note, function () {
         showSolution(currentTask());
       });
     });
@@ -459,9 +457,10 @@
 
     var timer = null;
     $('#code-editor').addEventListener('input', function () {
-      var task = currentTask();
+      /* Задачу и код фиксируем сразу: если за 400 мс перейти к другой задаче, черновик не перепутается */
+      var task = currentTask(), code = this.value;
       clearTimeout(timer);
-      timer = setTimeout(function () { if (task) Storage.setDraft(task.id, $('#code-editor').value); }, 400);
+      timer = setTimeout(function () { if (task) Storage.setDraft(task.id, code); }, 400);
     });
 
     $('#modal-ok').addEventListener('click', function () { closeModal(true); });
@@ -469,7 +468,7 @@
     $('#modal-backdrop').addEventListener('click', function (e) { if (e.target === $('#modal-backdrop')) closeModal(false); });
 
     document.addEventListener('keydown', function (e) {
-      if (e.ctrlKey && e.key === 'Enter') runCurrent();
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') runCurrent();
       if (e.key === 'Escape') { closeModal(false); closeTheory(); }
     });
 
