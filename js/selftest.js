@@ -36,13 +36,13 @@
     check('deepEqual-negative', !Runner.deepEqual([1, 2], [1, 3]));
     check('deepEqual-array-vs-object', !Runner.deepEqual([1], { 0: 1 }));
     check('deepEqual-set', !Runner.deepEqual(new Set([1]), new Set([2])));
-    check('data-9-topics', TasksDB.length === 9);
+    check('data-13-topics', TasksDB.length === 13);
     var totalTasks = 0, badDiff = 0;
     TasksDB.forEach(function (topic) {
       totalTasks += topic.tasks.length;
       topic.tasks.forEach(function (t) { if (!t.difficulty || t.difficulty < 1 || t.difficulty > 3) badDiff++; });
     });
-    check('data-270-tasks', totalTasks === 270);
+    check('data-390-tasks', totalTasks === 390);
     check('data-difficulties-ok', badDiff === 0);
 
     var syncTask = { id: 'st-sync', functionName: 'sum', tests: [{ input: [[1, 2, 3]], expected: 6 }, { input: [[]], expected: 0 }] };

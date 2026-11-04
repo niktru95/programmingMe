@@ -2,6 +2,11 @@
 TasksDB.push({
   id: 'objects', title: 'Объекты', icon: '📦',
   description: 'Создание, чтение, слияние, инверсия и работа с массивами объектов — база для реального кода.',
+  chapters: [
+    { title: 'Объекты', url: 'https://learn.javascript.ru/object' },
+    { title: 'Копирование объектов и ссылки', url: 'https://learn.javascript.ru/object-copy' },
+    { title: 'Object.keys, values, entries', url: 'https://learn.javascript.ru/keys-values-entries' }
+  ],
   theory: [
     { h: 'Объектный литерал', text: 'Объект хранит данные как пары ключ: значение. Ключи — обычно строки, значения — любые типы.', code: 'let user = {\n  name: "Иван",\n  age: 25,\n  isAdmin: false\n};\nuser.name    // "Иван"\nuser["age"]  // 25 — доступ через строку' },
     { h: 'Изменение объекта', text: 'Свойства можно добавлять, менять и удалять даже после создания объекта.', code: 'let user = { name: "Иван" };\nuser.age = 25;        // добавили\nuser.name = "Пётр";   // изменили\ndelete user.age;      // удалили\n// user === { name: "Пётр" }' },

@@ -2,6 +2,12 @@
 TasksDB.push({
   id: 'conditions', title: 'Условия и циклы', icon: '🔀',
   description: 'if/else, for и while: развилки, факториал, FizzBuzz, простые числа и другие классические задачи.',
+  chapters: [
+    { title: "Условное ветвление: if, '?'", url: 'https://learn.javascript.ru/ifelse' },
+    { title: 'Логические операторы', url: 'https://learn.javascript.ru/logical-operators' },
+    { title: 'Циклы while и for', url: 'https://learn.javascript.ru/while-for' },
+    { title: 'Конструкция "switch"', url: 'https://learn.javascript.ru/switch' }
+  ],
   theory: [
     { h: 'if / else', text: 'Условный оператор выполняет блок, только если условие истинно. else if позволяет проверить несколько условий подряд.', code: 'let age = 16;\nif (age >= 18) {\n  console.log("взрослый");\n} else if (age >= 13) {\n  console.log("подросток");\n} else {\n  console.log("ребёнок");\n}' },
     { h: 'Логические операторы', text: '&& — И (обе части истинны), || — ИЛИ (хотя бы одна истинна), ! — НЕ (отрицание).', code: 'let x = 7;\nx > 5 && x < 10     // true\nx > 10 || x === 7   // true\n!(x === 7)          // false' },

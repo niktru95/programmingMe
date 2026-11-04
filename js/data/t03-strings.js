@@ -2,6 +2,9 @@
 TasksDB.push({
   id: 'strings', title: 'Строки', icon: '🔤',
   description: 'Реверс, палиндромы, подстроки, регистр, camelCase и snake_case — работаем со строками как профи.',
+  chapters: [
+    { title: 'Строки', url: 'https://learn.javascript.ru/string' }
+  ],
   theory: [
     { h: 'Длина и символы', text: 'Строка — неизменяемая последовательность символов. Доступ к символу — по индексу (с нуля), длина — через свойство length.', code: 'let s = "кот";\ns[0]      // "к"\ns[2]      // "т"\ns.length // 3\ns[s.length - 1] // "т" — последний символ' },
     { h: 'Регистр и поиск', text: 'toUpperCase() / toLowerCase() меняют регистр, indexOf() находит позицию подстроки (или -1), includes() отвечает «да/нет».', code: '"привет".toUpperCase()   // "ПРИВЕТ"\n"hello".indexOf("ell")    // 1\n"hello".indexOf("xyz")    // -1\n"hello".includes("ell")  // true' },

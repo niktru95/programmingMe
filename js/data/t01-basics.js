@@ -2,6 +2,13 @@
 TasksDB.push({
   id: 'basics', title: 'Основы: переменные и типы', icon: '🔢',
   description: 'Переменные, типы данных, арифметика, преобразования. Разминка для новичка.',
+  chapters: [
+    { title: 'Переменные', url: 'https://learn.javascript.ru/variables' },
+    { title: 'Типы данных', url: 'https://learn.javascript.ru/types' },
+    { title: 'Преобразование типов', url: 'https://learn.javascript.ru/type-conversions' },
+    { title: 'Базовые операторы, математика', url: 'https://learn.javascript.ru/operators' },
+    { title: 'Операторы сравнения', url: 'https://learn.javascript.ru/comparison' }
+  ],
   theory: [
     { h: 'Переменные', text: 'Переменная — это именованный контейнер для значения.\n\nlet — переменная, которую можно менять (рекомендованная).\nconst — константа, менять нельзя.\nvar — старый способ, в новом коде лучше не использовать.', code: 'let age = 25;\nage = 26;          // ок\n\nconst PI = 3.14;\nPI = 3;           // Ошибка! константа неизменяема' },
     { h: 'Типы данных', text: 'В JavaScript есть 8 типов данных. Базовые:\n- number — числа (целые и дробные)\n- string — строки\n- boolean — true / false\n- null — \"пусто\", значения нет\n- undefined — значение ещё не присвоено\n- object — объекты, массивы и пр.', code: 'let n = 42;          // число\nlet s = "привет";     // строка\nlet b = true;         // логическое\nlet nothing = null;   // пусто\nlet x;                // undefined' },
