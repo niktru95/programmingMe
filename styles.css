@@ -159,3 +159,8 @@ main { max-width: 1100px; margin: 0 auto; padding: 26px 18px 70px; }
 .theory-h { margin: 0 0 8px; font-size: 16.5px; color: var(--accent); }
 .theory-section .inline-code { margin-top: 8px; }
 .theory-footer { padding-top: 12px; margin-top: 4px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; }
+@media (max-width: 560px) {
+  .header-inner { flex-wrap: wrap; gap: 6px; }
+  .global-progress { margin-left: 0; width: 100%; }
+  .gprog-bar { flex: 1; }
+}

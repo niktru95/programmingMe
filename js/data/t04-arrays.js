@@ -10,7 +10,8 @@ TasksDB.push({
     { h: 'Обход циклами', text: 'Самый частый приём: пройти по всем элементам и что-то с ними сделать — посчитать, сравнить, собрать новый массив.', code: 'let arr = [2, 4, 6];\nlet sum = 0;\nfor (let i = 0; i < arr.length; i++) {\n  sum += arr[i];\n}\n// sum === 12' },
     { h: 'reverse и sort', text: 'reverse() разворачивает, sort() сортирует. ВАЖНО: по умолчанию sort() сортирует как строки (\"10\" < \"9\")! Для чисел передавайте функцию сравнения.', code: '[1, 2, 3].reverse()           // [3, 2, 1]\n[30, 1, 9].sort()             // [1, 30, 9] — нельзя так!\n[30, 1, 9].sort((a, b) => a - b) // [1, 9, 30] — правильно\n[30, 1, 9].sort((a, b) => b - a) // [30, 9, 1] — по убыванию' },
     { h: 'Осторожно: мутация', text: 'reverse() и sort() меняют исходный массив. Чтобы не испортить оригинал, сначала сделайте копию: arr.slice().reverse().', code: 'let a = [1, 2, 3];\nlet b = a.reverse(); // a ТОЖЕ стал [3, 2, 1]!\n\nlet c = [1, 2, 3];\nlet d = c.slice().reverse(); // c не тронут' }
-  ],  tasks: [
+  ],
+  tasks: [
     { id: 'a-01', title: 'Сумма элементов', difficulty: 1,
       description: 'Напишите функцию sum(arr), которая возвращает сумму всех элементов массива.\n\nsum([1, 2, 3]) → 6',
       functionName: 'sum', starterCode: 'function sum(arr) {\n  // ваш код\n}',
@@ -100,7 +101,8 @@ TasksDB.push({
       functionName: 'mergeArr', starterCode: 'function mergeArr(a, b) {\n  // ваш код\n}',
       hints: ['a.concat(b) склеивает массивы', 'Или через spread: [...a, ...b]'],
       gen: function () { var a = rndArr(rndInt(1, 3), 1, 9); var b = rndArr(rndInt(1, 3), 1, 9); return [ { input: [a, b], expected: a.concat(b) }, { input: [[1], []], expected: [1] } ]; },
-      solution: 'function mergeArr(a, b) {\n  return a.concat(b);\n}' },    { id: 'a-16', title: 'Чётные индексы', difficulty: 2,
+      solution: 'function mergeArr(a, b) {\n  return a.concat(b);\n}' },
+    { id: 'a-16', title: 'Чётные индексы', difficulty: 2,
       description: 'Напишите функцию evenIndexes(arr), которая возвращает массив элементов с чётными индексами (0, 2, 4...).\n\nevenIndexes([10, 20, 30, 40]) → [10, 30]',
       functionName: 'evenIndexes', starterCode: 'function evenIndexes(arr) {\n  // ваш код\n}',
       hints: ['Идите циклом от 0 с шагом 2', 'Собирайте arr[i] в результат'],

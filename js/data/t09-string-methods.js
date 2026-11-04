@@ -148,6 +148,7 @@ TasksDB.push({
     { id: 'sm-23', title: 'Число из двух цифр', difficulty: 1,
       description: 'Напишите функцию twoDigits(n), которая превращает число 0..99 в строку из двух цифр (дополнение нулём слева) через padStart.\n\ntwoDigits(5) → "05"',
       functionName: 'twoDigits', starterCode: 'function twoDigits(n) {\n  // ваш код\n}',
+      hints: ['String(n) — сначала превратите число в строку', '.padStart(2, "0") дополнит её нулём слева до двух символов'],
       gen: function () { var a = rndInt(0, 99), b = rndInt(0, 99); return [ { input: [a], expected: String(a).padStart(2, "0") }, { input: [b], expected: String(b).padStart(2, "0") }, { input: [7], expected: "07" } ]; },
       solution: 'function twoDigits(n) {\n  return String(n).padStart(2, "0");\n}' },
     { id: 'sm-24', title: 'Заменить первое вхождение', difficulty: 1,
